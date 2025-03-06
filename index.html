@@ -44,7 +44,7 @@
       visitorCount = 1; // First visit
     } else {
       const currentTime = new Date().getTime();
-      if (!lastUpdate || currentTime - lastUpdate >= 600) { // 600000 ms = 10 minutes
+      if (!lastUpdate || currentTime - lastUpdate >= 60000) { // 600000 ms = 10 minutes
         visitorCount = parseInt(visitorCount) + 1;
         localStorage.setItem("lastUpdate", currentTime); // Update last update time
       }
