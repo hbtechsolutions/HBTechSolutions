@@ -36,29 +36,23 @@
 
   <!--Script of Website visitor-->
   <script>
-  function updateVisitorCount() {
-    let visitorCount = localStorage.getItem("visitorCount");
-    let lastUpdate = localStorage.getItem("lastUpdate");
-
-    if (!visitorCount) {
-      visitorCount = 1; // First visit
-    } else {
-      const currentTime = new Date().getTime();
-      if (!lastUpdate || currentTime - lastUpdate >= 60000) { // 600000 ms = 10 minutes
+    function updateVisitorCount() {
+      let visitorCount = localStorage.getItem("visitorCount");
+  
+      if (!visitorCount) {
+        visitorCount = 1; // First visit
+      } else {
         visitorCount = parseInt(visitorCount) + 1;
-        localStorage.setItem("lastUpdate", currentTime); // Update last update time
       }
+  
+      localStorage.setItem("visitorCount", visitorCount);
+  
+      // Update visitor count in the HTML
+      document.querySelector("#visitor-counter span").textContent = visitorCount;
     }
-
-    localStorage.setItem("visitorCount", visitorCount);
-
-    // Update visitor count in the HTML
-    document.querySelector("#visitor-counter span").textContent = visitorCount;
-  }
-
-  document.addEventListener("DOMContentLoaded", updateVisitorCount);
-</script>
-
+  
+    document.addEventListener("DOMContentLoaded", updateVisitorCount);
+  </script>
 </head>
 
 <body>
